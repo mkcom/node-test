@@ -1,0 +1,24 @@
+{% extends 'layout.html' %}
+
+{% block title%}Contributors - KX{% endblock %}
+
+{% block content %}
+    <h1>KX Allstars</h1>
+
+    <ul>
+        {% for artist in contributors %}
+        <li data-item-id="{{ artist['_id']|safe }}">
+            <a href="https://soundcloud.com/{{ artist.permalink }}">{{ artist.username }}</a>
+            <small class="remove">(löschen)</small>
+        </li>
+        {% endfor %}
+    </ul>
+
+    <h2>Add artist</h2>
+
+    <form method="post" action="/contributors">
+        <input type="text" placeholder="Artist Name" name="username"/>
+        <input type="text" placeholder="Artist Permalink" name="permalink"/>
+        <button type="submit">Save</button>
+    </form>
+{% endblock %}
